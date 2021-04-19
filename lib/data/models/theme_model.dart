@@ -9,23 +9,23 @@ class ThemeModel extends ChangeNotifier {
     this.customLightTheme,
     this.customDarkTheme,
     this.customCustomTheme,
-    String key,
+    String? key,
   }) {
     init();
   }
 
-  final ThemeData customLightTheme,
+  final ThemeData? customLightTheme,
       customDarkTheme,
       customBlackTheme,
       customCustomTheme;
 
-  int _accentColor = Colors.redAccent.value;
-  bool _customTheme = false;
-  int _darkAccentColor = Colors.greenAccent.value;
-  bool _darkMode = false;
-  int _primaryColor = Colors.blue.value;
-  SharedPreferences _prefs;
-  bool _trueBlack = false;
+  int? _accentColor = Colors.redAccent.value;
+  bool? _customTheme = false;
+  int? _darkAccentColor = Colors.greenAccent.value;
+  bool? _darkMode = false;
+  int? _primaryColor = Colors.blue.value;
+  SharedPreferences? _prefs;
+  bool? _trueBlack = false;
 
   ThemeType get type {
     if (_darkMode ?? false) {
@@ -38,37 +38,37 @@ class ThemeModel extends ChangeNotifier {
 
   void changeDarkMode(bool value) {
     _darkMode = value;
-    _prefs.setBool("dark_mode", _darkMode);
+    _prefs!.setBool("dark_mode", _darkMode!);
     notifyListeners();
   }
 
   void changeTrueBlack(bool value) {
     _trueBlack = value;
-    _prefs.setBool("true_black", _trueBlack);
+    _prefs!.setBool("true_black", _trueBlack!);
     notifyListeners();
   }
 
   void changeCustomTheme(bool value) {
     _customTheme = value;
-    _prefs.setBool("custom_theme", _customTheme);
+    _prefs!.setBool("custom_theme", _customTheme!);
     notifyListeners();
   }
 
   void changePrimaryColor(Color value) {
     _primaryColor = value.value;
-    _prefs.setInt("primary_color", _primaryColor);
+    _prefs!.setInt("primary_color", _primaryColor!);
     notifyListeners();
   }
 
   void changeAccentColor(Color value) {
     _accentColor = value.value;
-    _prefs.setInt("accent_color", _accentColor);
+    _prefs!.setInt("accent_color", _accentColor!);
     notifyListeners();
   }
 
   void changeDarkAccentColor(Color value) {
     _darkAccentColor = value.value;
-    _prefs.setInt("dark_accent_color", _darkAccentColor);
+    _prefs!.setInt("dark_accent_color", _darkAccentColor!);
     notifyListeners();
   }
 
@@ -95,7 +95,7 @@ class ThemeModel extends ChangeNotifier {
             );
       case ThemeType.custom:
         return customCustomTheme != null
-            ? customCustomTheme.copyWith(
+            ? customCustomTheme!.copyWith(
                 primaryColor: primaryColor ?? Colors.blue,
                 accentColor: accentColor ?? Colors.redAccent,
               )
@@ -136,7 +136,7 @@ class ThemeModel extends ChangeNotifier {
         );
   }
 
-  Color get backgroundColor {
+  Color? get backgroundColor {
     if (darkMode ?? false) {
       if (trueBlack ?? false) return Colors.black;
       return ThemeData.dark().scaffoldBackgroundColor;
@@ -162,12 +162,12 @@ class ThemeModel extends ChangeNotifier {
       _prefs = await SharedPreferences.getInstance();
     }
     if (_prefs != null) {
-      _darkMode = _prefs.getBool("dark_mode");
-      _trueBlack = _prefs.getBool("true_black");
-      _customTheme = _prefs.getBool("custom_theme");
-      _primaryColor = _prefs.getInt("primary_color");
-      _accentColor = _prefs.getInt("accent_color");
-      _darkAccentColor = _prefs.getInt("dark_accent_color");
+      _darkMode = _prefs!.getBool("dark_mode");
+      _trueBlack = _prefs!.getBool("true_black");
+      _customTheme = _prefs!.getBool("custom_theme");
+      _primaryColor = _prefs!.getInt("primary_color");
+      _accentColor = _prefs!.getInt("accent_color");
+      _darkAccentColor = _prefs!.getInt("dark_accent_color");
       notifyListeners();
     } else {
       print("Error Loading Theme...");
@@ -187,7 +187,7 @@ class ThemeModel extends ChangeNotifier {
           ? ThemeData.dark().primaryColor
           : ThemeData.light().primaryColor;
     }
-    return Color(_primaryColor);
+    return Color(_primaryColor!);
   }
 
   Color get accentColor {
@@ -195,15 +195,15 @@ class ThemeModel extends ChangeNotifier {
       if (_darkAccentColor == null) {
         return ThemeData.dark().accentColor;
       }
-      return Color(_darkAccentColor);
+      return Color(_darkAccentColor!);
     }
 
     if (_accentColor == null) {
       return ThemeData.light().accentColor;
     }
 
-    if (_customTheme) {
-      return Color(_accentColor);
+    if (_customTheme!) {
+      return Color(_accentColor!);
     }
 
     return Colors.redAccent;
@@ -211,11 +211,11 @@ class ThemeModel extends ChangeNotifier {
 
   Color get darkAccentColor {
     if (_darkAccentColor == null) return ThemeData.dark().accentColor;
-    return Color(_darkAccentColor);
+    return Color(_darkAccentColor!);
   }
 
   void reset() {
-    _prefs.clear();
+    _prefs!.clear();
     _darkMode = false;
     _trueBlack = false;
     _customTheme = false;

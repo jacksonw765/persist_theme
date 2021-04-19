@@ -13,7 +13,7 @@ class AccentColorPicker extends StatelessWidget {
     this.showOnlyCustomTheme = true,
   });
 
-  final Widget leading, subtitle, title;
+  final Widget? leading, subtitle, title;
   final String label;
   final bool showOnlyCustomTheme;
 

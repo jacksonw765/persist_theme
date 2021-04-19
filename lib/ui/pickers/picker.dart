@@ -4,10 +4,10 @@ import 'package:flutter_material_color_picker/flutter_material_color_picker.dart
 class CustomColorPicker extends StatefulWidget {
   const CustomColorPicker({
     this.onChanged,
-    @required this.value,
+    required this.value,
   });
 
-  final ValueChanged<Color> onChanged;
+  final ValueChanged<Color>? onChanged;
   final Color value;
 
   @override
@@ -15,7 +15,7 @@ class CustomColorPicker extends StatefulWidget {
 }
 
 class _CustomColorPickerState extends State<CustomColorPicker> {
-  Color main;
+  late Color? main;
 
   @override
   void initState() {
@@ -27,13 +27,13 @@ class _CustomColorPickerState extends State<CustomColorPicker> {
   Widget build(BuildContext context) {
     return MaterialColorPicker(
       selectedColor: main,
-      onMainColorChange: (ColorSwatch color) {
+      onMainColorChange: (ColorSwatch? color) {
         if (mounted)
           setState(() {
             main = color;
           });
       },
-      onColorChange: (color) => widget.onChanged(color),
+      onColorChange: (color) => widget.onChanged!(color),
     );
   }
 }

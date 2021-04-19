@@ -11,7 +11,7 @@ class TrueBlackSwitch extends StatelessWidget {
     this.showOnlyDarkMode = true,
   });
 
-  final Widget leading, subtitle, title;
+  final Widget? leading, subtitle, title;
   final bool showOnlyDarkMode;
 
   @override

@@ -10,7 +10,7 @@ class DarkModeSwitch extends StatelessWidget {
     this.title = const Text("Dark Mode"),
   });
 
-  final Widget leading, subtitle, title;
+  final Widget? leading, subtitle, title;
 
   @override
   Widget build(BuildContext context) {

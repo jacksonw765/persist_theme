@@ -11,7 +11,7 @@ class CustomThemeSwitch extends StatelessWidget {
     this.showOnlyLightMode = true,
   });
 
-  final Widget leading, subtitle, title;
+  final Widget? leading, subtitle, title;
   final bool showOnlyLightMode;
 
   @override

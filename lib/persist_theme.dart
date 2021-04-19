@@ -10,13 +10,13 @@ export 'ui/theme_widgets.dart';
 
 class PersistTheme extends StatelessWidget {
   final ThemeModel model;
-  final Widget child;
-  final Widget Function(BuildContext, ThemeModel, Widget) builder;
+  final Widget? child;
+  final Widget Function(BuildContext, ThemeModel, Widget?) builder;
 
   const PersistTheme({
-    Key key,
-    @required this.model,
-    @required this.builder,
+    Key? key,
+    required this.model,
+    required this.builder,
     this.child,
   }) : super(key: key);
 

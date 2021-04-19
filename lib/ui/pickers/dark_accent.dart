@@ -13,7 +13,7 @@ class DarkAccentColorPicker extends StatelessWidget {
     this.showOnlyDarkMode = true,
   });
 
-  final Widget leading, subtitle, title;
+  final Widget? leading, subtitle, title;
   final String label;
   final bool showOnlyDarkMode;
 
