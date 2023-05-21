@@ -82,26 +82,24 @@ class ThemeModel extends ChangeNotifier {
       case ThemeType.dark:
         return customDarkTheme ??
             ThemeData.dark().copyWith(
-              accentColor: darkAccentColor ?? null,
+              hintColor: darkAccentColor ?? null,
             );
       case ThemeType.black:
         return customBlackTheme ??
             ThemeData.dark().copyWith(
               scaffoldBackgroundColor: Colors.black,
-              backgroundColor: Colors.black,
-              bottomAppBarColor: Colors.black,
               primaryColorDark: Colors.black,
-              accentColor: darkAccentColor ?? null,
+              hintColor: darkAccentColor ?? null, bottomAppBarTheme: BottomAppBarTheme(color: Colors.black),
             );
       case ThemeType.custom:
         return customCustomTheme != null
             ? customCustomTheme!.copyWith(
                 primaryColor: primaryColor ?? Colors.blue,
-                accentColor: accentColor ?? Colors.redAccent,
+                hintColor: accentColor ?? Colors.redAccent,
               )
             : ThemeData.light().copyWith(
                 primaryColor: primaryColor ?? Colors.blue,
-                accentColor: accentColor ?? Colors.redAccent,
+                hintColor: accentColor ?? Colors.redAccent,
               );
       default:
         return customLightTheme ?? ThemeData.light().copyWith();
@@ -127,12 +125,12 @@ class ThemeModel extends ChangeNotifier {
             backgroundColor: Colors.black,
             bottomAppBarColor: Colors.black,
             primaryColorDark: Colors.black,
-            accentColor: darkAccentColor ?? null,
+            hintColor: darkAccentColor ?? null,
           );
     }
     return customDarkTheme ??
         ThemeData.dark().copyWith(
-          accentColor: darkAccentColor ?? null,
+          hintColor: darkAccentColor ?? null,
         );
   }
 
@@ -193,13 +191,13 @@ class ThemeModel extends ChangeNotifier {
   Color get accentColor {
     if (type == ThemeType.dark || type == ThemeType.black) {
       if (_darkAccentColor == null) {
-        return ThemeData.dark().accentColor;
+        return ThemeData.dark().hintColor;
       }
       return Color(_darkAccentColor!);
     }
 
     if (_accentColor == null) {
-      return ThemeData.light().accentColor;
+      return ThemeData.light().hintColor;
     }
 
     if (_customTheme!) {
@@ -210,7 +208,7 @@ class ThemeModel extends ChangeNotifier {
   }
 
   Color get darkAccentColor {
-    if (_darkAccentColor == null) return ThemeData.dark().accentColor;
+    if (_darkAccentColor == null) return ThemeData.dark().hintColor;
     return Color(_darkAccentColor!);
   }
 
