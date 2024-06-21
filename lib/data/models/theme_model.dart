@@ -82,14 +82,14 @@ class ThemeModel extends ChangeNotifier {
       case ThemeType.dark:
         return customDarkTheme ??
             ThemeData.dark().copyWith(
-              hintColor: darkAccentColor ?? null,
+              hintColor: darkAccentColor,
             );
       case ThemeType.black:
         return customBlackTheme ??
             ThemeData.dark().copyWith(
               scaffoldBackgroundColor: Colors.black,
               primaryColorDark: Colors.black,
-              hintColor: darkAccentColor ?? null, bottomAppBarTheme: BottomAppBarTheme(color: Colors.black),
+              hintColor: darkAccentColor, bottomAppBarTheme: BottomAppBarTheme(color: Colors.black),
             );
       case ThemeType.custom:
         return customCustomTheme != null
@@ -122,8 +122,8 @@ class ThemeModel extends ChangeNotifier {
       return customBlackTheme ??
           ThemeData.dark().copyWith(
             scaffoldBackgroundColor: Colors.black,
-            backgroundColor: Colors.black,
-            bottomAppBarColor: Colors.black,
+            //backgroundColor: Colors.black,
+            //bottomAppBarColor: Colors.black,
             primaryColorDark: Colors.black,
             hintColor: darkAccentColor ?? null,
           );
@@ -144,14 +144,14 @@ class ThemeModel extends ChangeNotifier {
   }
 
   Color get textColor {
-    if (customTheme ?? false) return Colors.white;
-    if (darkMode ?? false) return Colors.white;
+    if (customTheme) return Colors.white;
+    if (darkMode) return Colors.white;
     return Colors.black;
   }
 
   Color get textColorInvert {
-    if (customTheme ?? false) return Colors.black;
-    if (darkMode ?? false) return Colors.black;
+    if (customTheme) return Colors.black;
+    if (darkMode) return Colors.black;
     return Colors.white;
   }
 
